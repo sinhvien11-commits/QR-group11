@@ -1,10 +1,6 @@
 import { Html5Qrcode, Html5QrcodeScannerState } from 'html5-qrcode'
 
-import {
-  SCANNER_ERROR_MESSAGES,
-  SCANNER_FPS,
-  SCANNER_QR_BOX_RATIO,
-} from '@/constants/scanner.constants'
+import { SCANNER_ERROR_MESSAGES, SCANNER_FPS, SCANNER_QR_BOX_RATIO } from '@/constants/scanner.constants'
 import type { ScannerError, ScannerErrorType } from '@/types/scanner.types'
 
 export interface QrScannerHandle {
@@ -33,17 +29,20 @@ export function createQrScanner(elementId: string): QrScannerHandle {
           },
         },
         (text) => onSuccess(text),
-        () => {}
+        () => {},
       )
     },
 
     async stop() {
       if (!instance) return
       const state = instance.getState()
-      if (state === Html5QrcodeScannerState.SCANNING || state === Html5QrcodeScannerState.PAUSED) {
+      if (
+        state === Html5QrcodeScannerState.SCANNING ||
+        state === Html5QrcodeScannerState.PAUSED
+      ) {
         await instance.stop()
       }
-      instance = null // ✅ cleanup
+      instance = null  // ✅ cleanup
     },
 
     pause() {
@@ -66,18 +65,10 @@ function classifyError(err: unknown): ScannerErrorType {
   if (!navigator.mediaDevices || !window.isSecureContext) return 'unsupported'
   const msg = err instanceof Error ? err.message : String(err)
   const lower = msg.toLowerCase()
-  if (
-    lower.includes('notallowederror') ||
-    lower.includes('permission denied') ||
-    lower.includes('denied')
-  ) {
+  if (lower.includes('notallowederror') || lower.includes('permission denied') || lower.includes('denied')) {
     return 'permission-denied'
   }
-  if (
-    lower.includes('notfounderror') ||
-    lower.includes('device not found') ||
-    lower.includes('no camera')
-  ) {
+  if (lower.includes('notfounderror') || lower.includes('device not found') || lower.includes('no camera')) {
     return 'no-camera'
   }
   if (

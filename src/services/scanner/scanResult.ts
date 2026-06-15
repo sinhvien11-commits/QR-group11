@@ -11,7 +11,7 @@ export interface ScanResult {
 export function createScanResult(
   raw: string,
   normalized: string,
-  contentType: QRContentType | 'unknown'
+  contentType: QRContentType | 'unknown',
 ): ScanResult {
   return {
     raw,

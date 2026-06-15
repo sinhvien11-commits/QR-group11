@@ -23,7 +23,7 @@ watch(
     } else {
       dialogRef.value.close()
     }
-  }
+  },
 )
 
 onMounted(() => {
@@ -45,7 +45,9 @@ onMounted(() => {
       <button class="dialog-btn dialog-btn--cancel" autofocus @click="emit('cancel')">
         Cancel
       </button>
-      <button class="dialog-btn dialog-btn--confirm" @click="emit('confirm')">Confirm</button>
+      <button class="dialog-btn dialog-btn--confirm" @click="emit('confirm')">
+        Confirm
+      </button>
     </div>
   </dialog>
 </template>

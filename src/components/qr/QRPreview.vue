@@ -63,7 +63,7 @@ watch(
     if (prevValues && newText === prevValues[0] && newSize === prevValues[1]) return
     void renderQr()
   },
-  { immediate: true, flush: 'post' }
+  { immediate: true, flush: 'post' },
 )
 </script>
 

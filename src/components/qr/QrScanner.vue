@@ -21,7 +21,11 @@ watch(lastResult, (result, prev) => {
 
 <template>
   <div class="scanner-card">
-    <div class="scanner-wrap" role="region" aria-label="Camera viewfinder">
+    <div
+      class="scanner-wrap"
+      role="region"
+      aria-label="Camera viewfinder"
+    >
       <div :id="SCANNER_ELEMENT_ID" class="scanner-viewport" />
 
       <div v-if="status === 'idle'" class="scanner-overlay">
@@ -55,8 +59,14 @@ watch(lastResult, (result, prev) => {
       </button>
 
       <template v-else>
-        <button class="scan-btn scan-btn--secondary" @click="stop">Stop Camera</button>
-        <button v-if="status === 'paused'" class="scan-btn scan-btn--primary" @click="resume">
+        <button class="scan-btn scan-btn--secondary" @click="stop">
+          Stop Camera
+        </button>
+        <button
+          v-if="status === 'paused'"
+          class="scan-btn scan-btn--primary"
+          @click="resume"
+        >
           Scan Again
         </button>
       </template>

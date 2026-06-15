@@ -51,9 +51,7 @@
   font: inherit;
   font-size: 15px;
   box-sizing: border-box;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .auth-card input:focus {

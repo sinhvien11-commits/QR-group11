@@ -1,37 +1,12 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { storeToRefs } from 'pinia'
 
 import { useAuthStore } from '@/stores/useAuthStore'
-import { useOnboardingTour } from '@/composables/useOnboardingTour'
-
 import FeatureCard from '@/components/home/FeatureCard.vue'
 import WorkflowStep from '@/components/home/WorkflowStep.vue'
-import OnboardingTour from '@/components/ui/OnboardingTour.vue'
-import { HOME_TOUR_STEPS } from '@/constants/tour.constants'
 
 const { isAuthenticated } = storeToRefs(useAuthStore())
-
-const {
-  active,
-  index,
-  currentStep,
-  isFirst,
-  isLast,
-  targetRect,
-  total,
-  start,
-  next,
-  prev,
-  finish,
-} = useOnboardingTour(HOME_TOUR_STEPS)
-
-onMounted(() => {
-  setTimeout(() => {
-    void start()
-  }, 400)
-})
 
 const features = [
   {
@@ -68,20 +43,17 @@ const steps = [
   {
     step: 1,
     title: 'Create',
-    description:
-      'Choose a content type, fill in the details, and your QR code is ready in seconds.',
+    description: 'Choose a content type, fill in the details, and your QR code is ready in seconds.',
   },
   {
     step: 2,
     title: 'Scan',
-    description:
-      'Point your camera at any QR code for instant decoding and AI-powered content analysis.',
+    description: 'Point your camera at any QR code for instant decoding and AI-powered content analysis.',
   },
   {
     step: 3,
     title: 'Manage',
-    description:
-      'Save, rename, and revisit your codes from your personal cloud library — any time, anywhere.',
+    description: 'Save, rename, and revisit your codes from your personal cloud library — any time, anywhere.',
   },
 ]
 </script>
@@ -89,7 +61,7 @@ const steps = [
 <template>
   <main class="home">
     <!-- Hero -->
-    <section class="hero" aria-label="Introduction" data-tour="hero">
+    <section class="hero" aria-label="Introduction">
       <div class="hero-bg" aria-hidden="true" />
       <div class="hero-content">
         <span class="hero-badge">Group 11 · Capstone Project</span>
@@ -100,10 +72,8 @@ const steps = [
           content type, scan with your camera, and let AI analyse what's inside.
         </p>
         <div class="hero-actions">
-          <RouterLink to="/generate" class="btn btn-primary" data-tour="generate"
-            >Generate QR Code</RouterLink
-          >
-          <RouterLink to="/scan" class="btn btn-ghost" data-tour="scan">Scan QR Code</RouterLink>
+          <RouterLink to="/generate" class="btn btn-primary">Generate QR Code</RouterLink>
+          <RouterLink to="/scan" class="btn btn-ghost">Scan QR Code</RouterLink>
         </div>
       </div>
     </section>
@@ -112,7 +82,7 @@ const steps = [
     <section class="section" aria-labelledby="features-heading">
       <h2 id="features-heading" class="section-title">Everything you need</h2>
       <p class="section-sub">Four core capabilities, one cohesive platform.</p>
-      <div class="features-grid" data-tour="features">
+      <div class="features-grid">
         <FeatureCard
           v-for="f in features"
           :key="f.icon"
@@ -161,19 +131,6 @@ const steps = [
         </template>
       </div>
     </section>
-
-    <OnboardingTour
-      :active="active"
-      :index="index"
-      :total="total"
-      :current-step="currentStep"
-      :is-first="isFirst"
-      :is-last="isLast"
-      :target-rect="targetRect"
-      @next="next"
-      @prev="prev"
-      @finish="finish"
-    />
   </main>
 </template>
 

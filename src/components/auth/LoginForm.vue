@@ -59,16 +59,11 @@ async function handleSubmit(): Promise<void> {
           type="email"
           autocomplete="email"
           placeholder="you@example.com"
-          :aria-invalid="touched.email && !!emailError ? true : undefined"
-          :aria-describedby="touched.email && emailError ? 'login-email-err' : undefined"
+          :aria-invalid="(touched.email && !!emailError) ? true : undefined"
+          :aria-describedby="(touched.email && emailError) ? 'login-email-err' : undefined"
           @blur="touched.email = true"
         />
-        <span
-          v-if="touched.email && emailError"
-          id="login-email-err"
-          class="field-error"
-          role="alert"
-        >
+        <span v-if="touched.email && emailError" id="login-email-err" class="field-error" role="alert">
           {{ emailError }}
         </span>
       </div>
@@ -82,8 +77,8 @@ async function handleSubmit(): Promise<void> {
             :type="showPassword ? 'text' : 'password'"
             autocomplete="current-password"
             placeholder="Password"
-            :aria-invalid="touched.password && !!passwordError ? true : undefined"
-            :aria-describedby="touched.password && passwordError ? 'login-pass-err' : undefined"
+            :aria-invalid="(touched.password && !!passwordError) ? true : undefined"
+            :aria-describedby="(touched.password && passwordError) ? 'login-pass-err' : undefined"
             @blur="touched.password = true"
           />
           <button
@@ -96,12 +91,7 @@ async function handleSubmit(): Promise<void> {
             {{ showPassword ? 'Hide' : 'Show' }}
           </button>
         </div>
-        <span
-          v-if="touched.password && passwordError"
-          id="login-pass-err"
-          class="field-error"
-          role="alert"
-        >
+        <span v-if="touched.password && passwordError" id="login-pass-err" class="field-error" role="alert">
           {{ passwordError }}
         </span>
       </div>

@@ -64,7 +64,7 @@ router.beforeEach(async (to) => {
             resolve()
           }
         },
-        { immediate: true }
+        { immediate: true },
       )
     })
   }
