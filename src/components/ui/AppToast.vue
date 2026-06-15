@@ -116,7 +116,9 @@ const emit = defineEmits<{ dismiss: [id: string] }>()
 
 .toast-enter-active,
 .toast-leave-active {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .toast-enter-from,

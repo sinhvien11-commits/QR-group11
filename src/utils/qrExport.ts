@@ -17,7 +17,7 @@ export async function downloadQrSvg(
   text: string,
   filename: string,
   options?: QrOptions,
-  logoSrc?: string,
+  logoSrc?: string
 ): Promise<void> {
   let svg = await generateSvg(text, options)
 

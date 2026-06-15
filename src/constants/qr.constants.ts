@@ -14,7 +14,7 @@ export const DEFAULT_QR_FOREGROUND = '#000000'
 export const DEFAULT_QR_BACKGROUND = '#ffffff'
 
 /** Logo occupies this fraction of the QR canvas width. Kept at 20% to stay within the ECC-H recovery zone. */
-export const QR_LOGO_RATIO = 0.20
+export const QR_LOGO_RATIO = 0.2
 
 /** Extra padding between logo edge and white background, as a fraction of QR canvas width. */
 export const QR_LOGO_BG_PADDING = 0.028

@@ -19,14 +19,29 @@ import { useQrGenerator } from '@/composables/useQrGenerator'
 import { useModeration } from '@/composables/useModeration'
 import { useToast } from '@/composables/useToast'
 import { useNetworkStatus } from '@/composables/useNetworkStatus'
-import { buildExportFilename, copyQrToClipboard, downloadQrPng, downloadQrSvg } from '@/utils/qrExport'
+import {
+  buildExportFilename,
+  copyQrToClipboard,
+  downloadQrPng,
+  downloadQrSvg,
+} from '@/utils/qrExport'
 import { getFirestoreErrorMessage } from '@/utils/firestoreError'
 import { useQrStore } from '@/stores/useQrStore'
 
 import logoUrl from '@/assets/logo/group11.png'
 
-const { contentType, qrText, formError, canGenerate, textInput, urlInput, emailInput, phoneInput, wifiInput, generate } =
-  useQrGenerator()
+const {
+  contentType,
+  qrText,
+  formError,
+  canGenerate,
+  textInput,
+  urlInput,
+  emailInput,
+  phoneInput,
+  wifiInput,
+  generate,
+} = useQrGenerator()
 
 const qrStore = useQrStore()
 const moderation = useModeration()
@@ -67,7 +82,12 @@ async function downloadPng(): Promise<void> {
 async function downloadSvg(): Promise<void> {
   if (!qrText.value) return
   try {
-    await downloadQrSvg(qrText.value, buildExportFilename(contentType.value, 'svg'), undefined, logoUrl)
+    await downloadQrSvg(
+      qrText.value,
+      buildExportFilename(contentType.value, 'svg'),
+      undefined,
+      logoUrl
+    )
   } catch {
     showToast('Failed to download SVG.', 'error')
   }
@@ -135,7 +155,9 @@ async function saveToLibrary(): Promise<void> {
             :maxlength="MAX_QR_LENGTH"
             placeholder="Enter text to encode…"
           />
-          <span class="char-hint" aria-live="polite">{{ textInput.text.length }} / {{ MAX_QR_LENGTH }}</span>
+          <span class="char-hint" aria-live="polite"
+            >{{ textInput.text.length }} / {{ MAX_QR_LENGTH }}</span
+          >
         </div>
       </template>
 
@@ -238,18 +260,10 @@ async function saveToLibrary(): Promise<void> {
         <AnalysisCard :result="moderation.result.value" :loading="moderation.loading.value" />
 
         <div v-if="canvasForDownload" class="gen-actions">
-          <button
-            class="export-btn"
-            aria-label="Download QR code as PNG"
-            @click="downloadPng"
-          >
+          <button class="export-btn" aria-label="Download QR code as PNG" @click="downloadPng">
             Download PNG
           </button>
-          <button
-            class="export-btn"
-            aria-label="Download QR code as SVG"
-            @click="downloadSvg"
-          >
+          <button class="export-btn" aria-label="Download QR code as SVG" @click="downloadSvg">
             Download SVG
           </button>
           <button
@@ -261,7 +275,9 @@ async function saveToLibrary(): Promise<void> {
           </button>
           <SaveQrButton
             :loading="saving"
-            :disabled="moderation.loading.value || moderation.result.value?.risk === 'blocked' || !isOnline"
+            :disabled="
+              moderation.loading.value || moderation.result.value?.risk === 'blocked' || !isOnline
+            "
             @save="saveToLibrary"
           />
         </div>
@@ -326,7 +342,9 @@ async function saveToLibrary(): Promise<void> {
   font: inherit;
   font-size: 15px;
   box-sizing: border-box;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .gen-input:focus,

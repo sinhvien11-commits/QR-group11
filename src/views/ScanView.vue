@@ -78,7 +78,9 @@ async function saveToLibrary(): Promise<void> {
         <div class="scan-save-section">
           <SaveQrButton
             :loading="saving"
-            :disabled="moderation.loading.value || moderation.result.value?.risk === 'blocked' || !isOnline"
+            :disabled="
+              moderation.loading.value || moderation.result.value?.risk === 'blocked' || !isOnline
+            "
             @save="saveToLibrary"
           />
         </div>

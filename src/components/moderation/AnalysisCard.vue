@@ -28,7 +28,11 @@ defineProps<{
 
       <p class="analysis-summary">{{ result.summary }}</p>
 
-      <div v-if="result.categories.length > 0" class="analysis-categories" aria-label="Detected categories">
+      <div
+        v-if="result.categories.length > 0"
+        class="analysis-categories"
+        aria-label="Detected categories"
+      >
         <span v-for="cat in result.categories" :key="cat" class="category-chip">
           {{ cat }}
         </span>

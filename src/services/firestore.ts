@@ -12,7 +12,13 @@ import {
 } from 'firebase/firestore'
 
 import { db } from '@/services/firebase'
-import type { AiRisk, QrHistoryInput, QrHistoryItem, QrSource, QrType } from '@/types/qrHistory.types'
+import type {
+  AiRisk,
+  QrHistoryInput,
+  QrHistoryItem,
+  QrSource,
+  QrType,
+} from '@/types/qrHistory.types'
 
 function qrCollection(uid: string) {
   return collection(db, 'users', uid, 'qrcodes')

@@ -41,7 +41,12 @@ async function handleDelete(id: string): Promise<void> {
       <h1 class="library-title">My QR Library</h1>
     </div>
 
-    <div v-if="qrStore.loading" class="library-loading" aria-live="polite" aria-label="Loading your library">
+    <div
+      v-if="qrStore.loading"
+      class="library-loading"
+      aria-live="polite"
+      aria-label="Loading your library"
+    >
       <div class="library-spinner">
         <LoadingSpinner size="md" label="Loading your library" />
         <span class="loading-label" aria-hidden="true">Loading your library…</span>
@@ -51,11 +56,7 @@ async function handleDelete(id: string): Promise<void> {
       </div>
     </div>
 
-    <div
-      v-else-if="qrStore.error"
-      class="library-error"
-      role="alert"
-    >
+    <div v-else-if="qrStore.error" class="library-error" role="alert">
       <EmptyState title="Could not load library" :description="qrStore.error">
         <button class="retry-btn" @click="qrStore.loadLibrary()">Try again</button>
       </EmptyState>

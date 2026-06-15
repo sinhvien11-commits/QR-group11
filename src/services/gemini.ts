@@ -70,8 +70,7 @@ export async function analyzeWithGemini(content: string): Promise<GeminiModerati
   const apiKey = import.meta.env['VITE_GEMINI_API_KEY'] as string | undefined
   if (!apiKey) throw new Error('VITE_GEMINI_API_KEY is not configured')
 
-  const truncated =
-    content.length > MAX_GEMINI_INPUT ? content.slice(0, MAX_GEMINI_INPUT) : content
+  const truncated = content.length > MAX_GEMINI_INPUT ? content.slice(0, MAX_GEMINI_INPUT) : content
 
   const client = new GoogleGenerativeAI(apiKey)
   const model = client.getGenerativeModel({ model: GEMINI_MODEL })

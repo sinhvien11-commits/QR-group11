@@ -1,12 +1,6 @@
 import { computed, reactive, ref, watch } from 'vue'
 
-import {
-  formatEmail,
-  formatPhone,
-  formatText,
-  formatUrl,
-  formatWifi,
-} from '@/services/formatters'
+import { formatEmail, formatPhone, formatText, formatUrl, formatWifi } from '@/services/formatters'
 import type { WifiSecurity } from '@/services/formatters'
 
 import type { QRContentType } from '@/types/qr.types'

@@ -6,7 +6,7 @@ function roundedRect(
   y: number,
   w: number,
   h: number,
-  r: number,
+  r: number
 ): void {
   ctx.beginPath()
   ctx.moveTo(x + r, y)

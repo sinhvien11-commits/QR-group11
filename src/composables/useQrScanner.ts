@@ -7,7 +7,11 @@ import { normalize } from '@/services/scanner/normalizer'
 import { createScanResult } from '@/services/scanner/scanResult'
 import type { ScanResult } from '@/services/scanner/scanResult'
 
-import { SCAN_TIMEOUT_MS, SCANNER_ELEMENT_ID, SCANNER_ERROR_MESSAGES } from '@/constants/scanner.constants'
+import {
+  SCAN_TIMEOUT_MS,
+  SCANNER_ELEMENT_ID,
+  SCANNER_ERROR_MESSAGES,
+} from '@/constants/scanner.constants'
 import type { ScannerError, ScannerStatus } from '@/types/scanner.types'
 
 export function useQrScanner() {
@@ -36,7 +40,8 @@ export function useQrScanner() {
   }
 
   async function start(): Promise<void> {
-    if (status.value === 'loading' || status.value === 'scanning' || status.value === 'paused') return
+    if (status.value === 'loading' || status.value === 'scanning' || status.value === 'paused')
+      return
     status.value = 'loading'
     scanError.value = null
     try {

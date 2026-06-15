@@ -2,7 +2,12 @@
 import { ref } from 'vue'
 
 import type { QrHistoryItem } from '@/types/qrHistory.types'
-import { AI_RISK_LABELS, LIBRARY_RENAME_MAX_LENGTH, QR_SOURCE_LABELS, QR_TYPE_LABELS } from '@/constants/library.constants'
+import {
+  AI_RISK_LABELS,
+  LIBRARY_RENAME_MAX_LENGTH,
+  QR_SOURCE_LABELS,
+  QR_TYPE_LABELS,
+} from '@/constants/library.constants'
 import { formatDate } from '@/utils/formatDate'
 
 import ConfirmDialog from '@/components/ui/ConfirmDialog.vue'
@@ -87,11 +92,7 @@ function cancelDelete(): void {
     </dl>
 
     <div class="card-actions">
-      <button
-        class="card-btn card-btn--ghost"
-        :disabled="isRenaming"
-        @click="startRename"
-      >
+      <button class="card-btn card-btn--ghost" :disabled="isRenaming" @click="startRename">
         Rename
       </button>
       <button

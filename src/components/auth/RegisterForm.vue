@@ -38,7 +38,7 @@ const confirmError = computed<string>(() => {
 })
 
 const isValid = computed<boolean>(
-  () => !emailError.value && !passwordError.value && !confirmError.value,
+  () => !emailError.value && !passwordError.value && !confirmError.value
 )
 
 onMounted(() => {
@@ -70,11 +70,16 @@ async function handleSubmit(): Promise<void> {
           type="email"
           autocomplete="email"
           placeholder="you@example.com"
-          :aria-invalid="(touched.email && !!emailError) ? true : undefined"
-          :aria-describedby="(touched.email && emailError) ? 'reg-email-err' : undefined"
+          :aria-invalid="touched.email && !!emailError ? true : undefined"
+          :aria-describedby="touched.email && emailError ? 'reg-email-err' : undefined"
           @blur="touched.email = true"
         />
-        <span v-if="touched.email && emailError" id="reg-email-err" class="field-error" role="alert">
+        <span
+          v-if="touched.email && emailError"
+          id="reg-email-err"
+          class="field-error"
+          role="alert"
+        >
           {{ emailError }}
         </span>
       </div>
@@ -88,8 +93,8 @@ async function handleSubmit(): Promise<void> {
             :type="showPassword ? 'text' : 'password'"
             autocomplete="new-password"
             placeholder="At least 6 characters"
-            :aria-invalid="(touched.password && !!passwordError) ? true : undefined"
-            :aria-describedby="(touched.password && passwordError) ? 'reg-pass-err' : undefined"
+            :aria-invalid="touched.password && !!passwordError ? true : undefined"
+            :aria-describedby="touched.password && passwordError ? 'reg-pass-err' : undefined"
             @blur="touched.password = true"
           />
           <button
@@ -102,7 +107,12 @@ async function handleSubmit(): Promise<void> {
             {{ showPassword ? 'Hide' : 'Show' }}
           </button>
         </div>
-        <span v-if="touched.password && passwordError" id="reg-pass-err" class="field-error" role="alert">
+        <span
+          v-if="touched.password && passwordError"
+          id="reg-pass-err"
+          class="field-error"
+          role="alert"
+        >
           {{ passwordError }}
         </span>
       </div>
@@ -116,8 +126,8 @@ async function handleSubmit(): Promise<void> {
             :type="showConfirm ? 'text' : 'password'"
             autocomplete="new-password"
             placeholder="Repeat password"
-            :aria-invalid="(touched.confirm && !!confirmError) ? true : undefined"
-            :aria-describedby="(touched.confirm && confirmError) ? 'reg-confirm-err' : undefined"
+            :aria-invalid="touched.confirm && !!confirmError ? true : undefined"
+            :aria-describedby="touched.confirm && confirmError ? 'reg-confirm-err' : undefined"
             @blur="touched.confirm = true"
           />
           <button
@@ -130,7 +140,12 @@ async function handleSubmit(): Promise<void> {
             {{ showConfirm ? 'Hide' : 'Show' }}
           </button>
         </div>
-        <span v-if="touched.confirm && confirmError" id="reg-confirm-err" class="field-error" role="alert">
+        <span
+          v-if="touched.confirm && confirmError"
+          id="reg-confirm-err"
+          class="field-error"
+          role="alert"
+        >
           {{ confirmError }}
         </span>
       </div>

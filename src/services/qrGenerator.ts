@@ -36,7 +36,7 @@ export async function generateDataUrl(text: string, options?: QrOptions): Promis
 export async function generateCanvas(
   text: string,
   canvas: HTMLCanvasElement,
-  options?: QrOptions,
+  options?: QrOptions
 ): Promise<void> {
   assertLength(text)
   await toCanvas(canvas, text, buildRenderOptions(options))

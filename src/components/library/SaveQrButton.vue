@@ -10,11 +10,7 @@ defineEmits<{ save: [] }>()
 </script>
 
 <template>
-  <button
-    class="save-qr-btn"
-    :disabled="disabled || loading"
-    @click="$emit('save')"
-  >
+  <button class="save-qr-btn" :disabled="disabled || loading" @click="$emit('save')">
     <LoadingSpinner v-if="loading" size="sm" />
     {{ loading ? 'Saving…' : 'Save to Library' }}
   </button>
@@ -31,7 +27,9 @@ defineEmits<{ save: [] }>()
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  transition: opacity 0.2s, background 0.2s;
+  transition:
+    opacity 0.2s,
+    background 0.2s;
   background: transparent;
   color: var(--accent);
   border: 1px solid var(--accent-border);
