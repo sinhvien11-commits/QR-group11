@@ -11,10 +11,14 @@ export interface QrScannerHandle {
 }
 
 export function createQrScanner(elementId: string): QrScannerHandle {
-  const instance = new Html5Qrcode(elementId, /* verbose= */ false)
+  // ✅ Khai báo nhưng CHƯA tạo — chờ đến khi start() được gọi
+  let instance: Html5Qrcode | null = null
 
   return {
     async start(onSuccess) {
+      // ✅ Tạo instance tại đây — DOM đã sẵn sàng
+      instance = new Html5Qrcode(elementId, /* verbose= */ false)
+
       await instance.start(
         { facingMode: 'environment' },
         {
@@ -30,6 +34,7 @@ export function createQrScanner(elementId: string): QrScannerHandle {
     },
 
     async stop() {
+      if (!instance) return
       const state = instance.getState()
       if (
         state === Html5QrcodeScannerState.SCANNING ||
@@ -37,15 +42,18 @@ export function createQrScanner(elementId: string): QrScannerHandle {
       ) {
         await instance.stop()
       }
+      instance = null  // ✅ cleanup
     },
 
     pause() {
+      if (!instance) return
       if (instance.getState() === Html5QrcodeScannerState.SCANNING) {
         instance.pause()
       }
     },
 
     resume() {
+      if (!instance) return
       if (instance.getState() === Html5QrcodeScannerState.PAUSED) {
         instance.resume()
       }

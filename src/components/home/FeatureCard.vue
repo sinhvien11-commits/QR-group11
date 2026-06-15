@@ -1,13 +1,16 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
+
 defineProps<{
   icon: 'generate' | 'scan' | 'library' | 'ai'
   title: string
   description: string
+  to?: string
 }>()
 </script>
 
 <template>
-  <article class="feature-card">
+  <component :is="to ? RouterLink : 'article'" :to="to" class="feature-card">
     <div class="icon-wrap" aria-hidden="true">
       <svg
         v-if="icon === 'generate'"
@@ -70,7 +73,7 @@ defineProps<{
 
     <h3 class="feature-title">{{ title }}</h3>
     <p class="feature-desc">{{ description }}</p>
-  </article>
+  </component>
 </template>
 
 <style scoped>
@@ -88,6 +91,12 @@ defineProps<{
     box-shadow 0.25s,
     transform 0.25s;
   cursor: default;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.feature-card {
+  cursor: pointer;
 }
 
 .feature-card:hover {

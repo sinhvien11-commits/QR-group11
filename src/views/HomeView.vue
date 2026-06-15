@@ -14,24 +14,28 @@ const features = [
     title: 'Smart QR Generator',
     description:
       'Encode URLs, text, email, phone numbers, and Wi-Fi credentials — with logo embedding and PNG / SVG export.',
+    to: '/generate',
   },
   {
     icon: 'scan' as const,
     title: 'QR Scanner',
     description:
       'Decode any QR code in real time using your device camera. Fast, private, and fully in-browser.',
+    to: '/scan',
   },
   {
     icon: 'library' as const,
     title: 'Secure Cloud Library',
     description:
       'Every saved QR code is stored in your private Firestore vault and synced across all your devices.',
+    to: '/library',
   },
   {
     icon: 'ai' as const,
     title: 'AI-powered Assistance',
     description:
       'Gemini AI inspects decoded content for safety, summarises links, and flags potentially harmful payloads.',
+    to: '/scan',
   },
 ]
 
@@ -85,6 +89,7 @@ const steps = [
           :icon="f.icon"
           :title="f.title"
           :description="f.description"
+          :to="f.to"
         />
       </div>
     </section>
