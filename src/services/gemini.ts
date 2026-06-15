@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai'
 
 import type { GeminiModerationResult, ModerationRisk } from '@/types/moderation.types'
 
-const GEMINI_MODEL = 'gemini-1.5-flash'
+const GEMINI_MODEL = 'gemini-2.0-flash'
 const VALID_RISKS: ModerationRisk[] = ['safe', 'suspicious', 'blocked', 'unknown']
 
 /** Hard cap on content sent to Gemini — prevents runaway tokens and prompt-stuffing attacks. */
